@@ -203,7 +203,9 @@
 				qGradient:false,
 				qCustomCaption:false,
 				qBorder:true,
-				qEnableSelect:true
+				qEnableSelect:true,
+				qPositiveColor: { color: '#a4c400' },
+				qNegativeColor: { color: '#d80073' }
 			},
 			dvTotalCaption:{
 				qStringExpression:{
@@ -451,6 +453,20 @@
 									max: 15,
 									step: 2.5
 								},
+								positiveColor: {
+									type: 'number',
+									component: 'color-picker',
+									label: 'Positive Color',
+									ref: 'qHyperCubeDef.qPositiveColor',
+									defaultValue: '#a4c400'
+								},
+								negativeColor: {
+									type: 'number',
+									component: 'color-picker',
+									label: 'Negative Color',
+									ref: 'qHyperCubeDef.qNegativeColor',
+									defaultValue: '#d80073'
+								},
 								gradient: {
 									type: 'boolean',
 									label: 'Dégradé'.translate(),
@@ -506,7 +522,9 @@
 				'customCaption' : (layout.qHyperCube.qCustomCaption === undefined ? false : layout.qHyperCube.qCustomCaption),
 				'totalCaption' : (layout.dvTotalCaption === undefined ? "" : layout.dvTotalCaption),
 				'border' : (layout.qHyperCube.qBorder === undefined ? true : layout.qHyperCube.qBorder),
-				'enableSelect' : (layout.qHyperCube.qEnableSelect === undefined ? true : layout.qHyperCube.qEnableSelect)
+				'enableSelect' : (layout.qHyperCube.qEnableSelect === undefined ? true : layout.qHyperCube.qEnableSelect),
+				'negativeColor' : (layout.qHyperCube.qNegativeColor === undefined ? '#d80073' : layout.qHyperCube.qNegativeColor.color),
+				'positiveColor' : (layout.qHyperCube.qPositiveColor === undefined ? '#a4c400' : layout.qHyperCube.qPositiveColor.color)
 			};
 
 			// Upward compatibility <= 1.2
@@ -919,14 +937,17 @@ var deltaViz = function ( self, dataD3, measures, width, height, id, legend, pro
 		
 		// Delta palette
 		var invert = properties.inverted ? -1 : 1;
+
+		// FYI - this is where the color is actually set
+
 		// Positive variance ?
-		if (d.percent * invert > (properties.neutrality /100.)) { 
-			// Green
-			return properties.gradient ? greenScale(d.variance * invert) : properties.contrast ? '#008a00' : '#a4c400'; 
+		if (d.percent * invert > (properties.neutrality /100.)) {
+
+			return properties.gradient ? greenScale(d.variance * invert) : properties.positiveColor; // properties.contrast ? '#FFFFFF' : '#FFFFFF'; 
 		// Négative variance ?
 		} else if (d.percent * invert < (-properties.neutrality /100.)) { 
 			// Red
-			return properties.gradient ? redScale(d.variance * invert) : properties.contrast ? '#a20025' : '#d80073'; 
+			return properties.gradient ? redScale(d.variance * invert) : properties.negativeColor; // properties.contrast ? '#a20025' : '#d80073'; 
 		// Neutral zone
 		} else {
 			// Amber
