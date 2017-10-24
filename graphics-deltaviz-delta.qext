@@ -1,14 +1,14 @@
 {
-	"name": "deltaViz",
-	"description": "deltaViz variance dashboard",
+	"name": "deltaVizColorPickers",
+	"description": "deltaViz variance dashboard with color pickers",
 	"icon": "treemap",
 	"type": "visualization",
 	"version": 1.4,
 	"preview": "preview.png",
-	"author": "(c) Yves Blake 2014-2016",
-	"homepage" : "https://github.com/yblake/deltaViz",
+	"author": "(c) Yves Blake 2014-2016. Modified by Brad Hughes.",
+	"homepage" : "https://github.com/bradhugh/deltaViz/tree/color_chooser",
 	"keywords" : "qlik-sense, visualization, deltaViz",
-	"license" : "https://github.com/yblake/deltaViz/blob/master/LICENSE",
+	"license" : "https://github.com/bradhugh/deltaViz/tree/color_chooser/LICENSE",
 	"repository" : "",
 	"dependencies" : { "qlik-sense" : ">=3.0.x" }
 }
