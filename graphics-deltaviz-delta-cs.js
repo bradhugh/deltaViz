@@ -29,7 +29,7 @@
  * @details    https://github.com/yblake/deltaViz
  */
  
- define(['qlik','jquery', 'text!./graphics-deltaviz-delta.css', './d3.min'], function(qlik, $, cssContent) {
+ define(['qlik','jquery', 'text!./graphics-deltaviz-delta-cs.css', './d3.min'], function(qlik, $, cssContent) {
 
 	'use strict';
 	$('<style>').html(cssContent).appendTo('head');
@@ -628,7 +628,7 @@
 			var height = $element.height()-4; // QS 2.2 apply rounding
 
 			// Chart object id
-			var id = 'graphics-deltaviz-delta-' + layout.qInfo.qId;
+			var id = 'graphics-deltaviz-delta-cs-' + layout.qInfo.qId;
 
 			// Check to see if the chart element has already been created
 			if (document.getElementById(id)) {
@@ -966,7 +966,7 @@ var deltaViz = function ( self, dataD3, measures, width, height, id, legend, pro
 		.attr('y',cy-iw/2)
 		.attr('width', iw)
 		.attr('height', iw)
-		.attr('xlink:href','/extensions/graphics-deltaviz-delta/background.png')
+		.attr('xlink:href','/extensions/graphics-deltaviz-delta-cs/background.png')
 	;
 
 	// =====================================================================================================================
